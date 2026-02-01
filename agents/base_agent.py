@@ -1,15 +1,16 @@
 """Base agent class for all specialized agents."""
 
 import json
+import os
 from pathlib import Path
-from anthropic import Anthropic
+from groq import Groq
 
 
 class BaseAgent:
     """Base class for specialized analysis agents."""
 
-    def __init__(self, prompt_file: str, model: str = "claude-sonnet-4-20250514"):
-        self.client = Anthropic()
+    def __init__(self, prompt_file: str, model: str = "llama-3.3-70b-versatile"):
+        self.client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
         self.model = model
         self.prompt_template = self._load_prompt(prompt_file)
 
@@ -42,10 +43,10 @@ class BaseAgent:
         raise NotImplementedError("Subclasses must implement analyze()")
 
     def _call_api(self, prompt: str, max_tokens: int = 1000) -> str:
-        """Make API call to Claude."""
-        response = self.client.messages.create(
+        """Make API call to Groq."""
+        response = self.client.chat.completions.create(
             model=self.model,
-            max_tokens=max_tokens,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=max_tokens
         )
-        return response.content[0].text
+        return response.choices[0].message.content
