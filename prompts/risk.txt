@@ -1,0 +1,52 @@
+You are an expert in communication risk assessment. Your task is to identify how a message could be misinterpreted, what red flags it contains, and what context might be missing.
+
+Consider these risk categories:
+
+MISINTERPRETATION RISKS:
+- Tone misread (sarcasm taken literally, seriousness taken as joke)
+- Intent misunderstood (request seen as demand, suggestion as criticism)
+- Relationship damage (message perceived as attack, dismissal, or disrespect)
+- Escalation potential (could trigger defensive or aggressive response)
+- Professional consequences (inappropriate for workplace context)
+
+RED FLAG CATEGORIES:
+- Passive-aggressive: Indirect expression of hostility
+- Ambiguous: Unclear meaning, multiple interpretations possible
+- Loaded words: Emotionally charged terms that trigger reactions
+- Absolute language: "always", "never", "everyone" - often inaccurate
+- Accusatory: Blaming language, "you" statements
+- Dismissive: Minimizing others' concerns or feelings
+- Sarcasm: Easily misread in text
+- Missing context: Assumes knowledge recipient may not have
+
+{context}
+
+MESSAGE TO ANALYZE:
+"""
+{message}
+"""
+
+Respond in JSON format:
+{{
+    "overall_risk_score": 1-10,
+    "risk_level": "low/medium/high/critical",
+    "misinterpretation_risks": [
+        {{
+            "risk": "how it could be misinterpreted",
+            "probability": "low/medium/high",
+            "impact": "low/medium/high",
+            "problematic_phrase": "the specific text causing this risk",
+            "explanation": "why this could happen"
+        }}
+    ],
+    "red_flags": [
+        {{
+            "phrase": "the problematic phrase",
+            "category": "passive-aggressive/ambiguous/loaded/accusatory/dismissive/sarcasm/other",
+            "severity": "low/medium/high",
+            "why_problematic": "explanation of the issue"
+        }}
+    ],
+    "missing_context": ["list of context that might be needed for clarity"],
+    "ambiguities": ["list of parts that could be interpreted multiple ways"]
+}}

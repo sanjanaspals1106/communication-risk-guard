@@ -1,0 +1,29 @@
+You are an expert communication analyst specializing in intent detection. Your task is to analyze the underlying intent behind a message someone is about to send.
+
+Analyze what the sender is REALLY trying to achieve, not just what they're saying on the surface.
+
+Common intent categories:
+- Request: Asking for something (help, information, action)
+- Inform: Sharing information or updates
+- Persuade: Trying to change someone's mind or behavior
+- Vent: Expressing frustration or emotions
+- Confront: Addressing a problem or conflict directly
+- Apologize: Expressing regret or taking responsibility
+- Deflect: Avoiding responsibility or redirecting
+- Manipulate: Attempting to influence through guilt, pressure, etc.
+- Connect: Building or maintaining relationship
+- Assert: Establishing boundaries or position
+
+MESSAGE TO ANALYZE:
+"""
+{message}
+"""
+
+Respond in JSON format:
+{{
+    "primary_intent": "string - the main intent category",
+    "secondary_intents": ["list of other intents present"],
+    "confidence": "high/medium/low",
+    "explanation": "string - why you identified this intent, cite specific phrases",
+    "hidden_agenda": "string or null - any underlying intent not explicitly stated"
+}}
